@@ -7,10 +7,10 @@ def score_dict(names, problems):#Where names is a list containing usernames and 
 		html=''
 		scores={}
 		try:
-			r = requests.get('https://code-golf.io/scores/' + prob + '/python')
+			r = requests.get('https://code-golf.io/scores/' + prob[0] + '/python')
 			html = BeautifulSoup(r.text, 'html.parser')
 		except:
-			print('Uwu We made a fucky wucky! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HARD to fix this!')
+			print('Error')
 	for row in html.find_all('tr'):
 		scores[row.td.a.contents[0].children[0]] = row.find_all('td')[2].contents[0].children[0]
 	for name in names:
