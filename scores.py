@@ -16,7 +16,7 @@ def score_dict(names, problems):#Where names is a list containing usernames and 
 	for name in names:
 		bad_chars='()'
 		try:
-			users[name] += int(("".join(c for c in score[name] if c not in bad_chars) - ' points'))
+			users[name[0]] += int(("".join(c for c in score[name[0]] if c not in bad_chars) - ' points'))
 		except:
 			pass
 	return users
