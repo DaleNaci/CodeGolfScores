@@ -14,7 +14,7 @@ def score_dict(names, problems):#Where names is a list containing usernames and 
     except:
       print('Uwu We made a fucky wucky! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HARD to fix this!')
     for row in html.find_all('tr'):
-      scores[row.td.a.contents[0].chlidren[0]] = row.find_all('td')[2].contents[0].children[0]
+      scores[row.td.a.contents[0].children[0]] = row.find_all('td')[2].contents[0].children[0]
       for name in names:
       		bad_chars='()'
       		try:
