@@ -1,4 +1,4 @@
-import csv, requests
+import requests
 from bs4 import BeautifulSoup
 
 def score_dict(names, problems):#Where names is a list containing usernames and problems is a list conatining the code golf problems you want to check
