@@ -4,4 +4,4 @@ if __name__ == '__main__':
     with open('users.csv') as usefile:
       problems = csv.reader(probfile)
       names = csv.reader(usefile)
-      print(score_dict(names, problems))
+      print(scores.score_dict(names, problems))
