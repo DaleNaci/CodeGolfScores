@@ -9,7 +9,6 @@ def score_dict(names, problems):#Where names is a list containing usernames and 
 		try:
 			r = requests.get('https://code-golf.io/scores/' + prob + '/python')
 			html = BeautifulSoup(r.text, 'html.parser')
-			print(html)
 		except:
 			print('Uwu We made a fucky wucky! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HARD to fix this!')
 	for row in html.find_all('tr'):
