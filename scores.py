@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 
 def score_dict(names, problems):#Where names is a list containing usernames and problems is a list conatining the code golf problems you want to check
 	users = {}
-	for name in names:
-		users[name] = 0
 	for prob in problems:
 		html=''
 		scores={}
