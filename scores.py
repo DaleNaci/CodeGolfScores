@@ -1,22 +1,22 @@
 import requests
 from bs4 import BeautifulSoup
 
-def score_dict(names, problems):#Where names is a list containing usernames and problems is a list conatining the code golf problems you want to check
+class ConnectionError(Exception):
+	def __init__(self):
+		self.message = 'Connection failed'
+		super().__init__(self)
+
+
+def score_dict(names):#Where names is a list containing usernames
 	users = {}
-	for prob in problems:
-		html=''
-		scores={}
-		try:
-			r = requests.get('https://code-golf.io/scores/' + prob[0] + '/python')
-			html = BeautifulSoup(r.text, 'html.parser')
-		except:
-			print('Error')
-	for row in html.find_all('tr'):
-		scores[row.td.a.contents[0].children[0]] = row.find_all('td')[2].contents[0].children[0]
 	for name in names:
-		bad_chars='()'
+		html = ''
 		try:
-			users[name[0]] += int(("".join(c for c in score[name[0]] if c not in bad_chars) - ' points'))
-		except:
-			pass
+			r = requests.get('https://code-golf.io/users/' + name)
+			if not r.status_code == 200:
+				raise ConnectionError
+			html = BeautifulSoup(r.text, 'html.parser')
+		except e:
+			print(e)
+		users[name] = int(html.main.table.tr.td.contents[0])
 	return users
