@@ -10,13 +10,13 @@ r = requests.get('https://code-golf.io/scores')
 if not r.status_code == 200:
 	raise ConnectionError
 
-# html = soup(r.text, 'html.parser')
+html = soup(r.text, 'html.parser')
 
 
-# outer = html.main.table.tr
+outer = html.main.table.tr
 
-# print(outer.td.findNext('td').a.contents[0])
-# print(outer.td.findNext('td').findNext('td').contents[0])
+print(outer.td.findNext('td').a.contents[0])
+print(outer.td.findNext('td').findNext('td').contents[0])
 
 # print(outer.td.findNext('td').a.contents[0])
 # print(outer.td.findNext('td').findNext('td').contents[0])
@@ -25,21 +25,20 @@ if not r.status_code == 200:
 # 	outer = html.main.table.tr
 # 	for j in range(i):
 		
-html = soup(r.text, 'html.parser')
-table = html.findAll("table")[0]
-rows = table.findAll('tr')
-for tr in rows:
-	print(tr.get_text(strip=True))
+# html = soup(r.text, 'html.parser')
+# table = html.findAll("table")[0]
+# rows = table.findAll('tr')
+#for tr in rows:
+	
 
 
 
 
 # OLD
 
-# # USER = ENTIRE "tr" SECTION
+#USER = ENTIRE "tr" SECTION
 # userList = html.find_all("tr")
 
 # print(userList[0].text)
-# #print(userList[0].text)
 
-# #for user in userList:
+#for user in userList:
