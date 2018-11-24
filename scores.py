@@ -1,22 +1,24 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as soup
 
-class ConnectionError(Exception):
-	def __init__(self):
-		self.message = 'Connection failed'
-		super().__init__(self)
+users = open("example/users.txt", "r").read().split(",")
+users.pop(len(users)-1)
 
+points = []
 
-def score_dict(names):#Where names is a list containing usernames
-	users = {}
-	for name in names:
-		html = ''
-		try:
-			r = requests.get('https://code-golf.io/users/' + name)
-			if not r.status_code == 200:
-				raise ConnectionError
-			html = BeautifulSoup(r.text, 'html.parser')
-		except e:
-			print(e)
-		users[name] = int(html.main.table.tr.td.contents[0])
-	return users
+for u in users:
+	r = requests.get("https://code-golf.io/users/" + u)
+	html = soup(r.text, "html.parser")
+	points.append(int(html.table.tr.td.contents[0]))
+
+for i in range(len(points)):
+	m = i
+	for j in range(i+1, len(points)):
+		if points[m] < points[j]:
+			m = j
+	points[i], points[m] = points[m], points[i]
+	users[i], users[m] = users[m], users[i]
+
+for i in range(0, len(points)):
+	print(users[i] + ": "),
+	print points[i]
